@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<title>Hello, world!</title>
+<title>Hello!</title>
 <link rel="stylesheet" href="style.css">
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6251bb63d87be7bc"></script>
@@ -15,16 +15,15 @@
 
 
 </head>
+
     <style>
         body {
-          background-image: url(https://cdn.pixabay.com/photo/2016/12/16/23/51/water-1912606__340.jpg);
-          background-size: 100% 250px;
+          background-image: url(https://thumbs.gfycat.com/DimpledSevereBoa-size_restricted.gif);
+          background-size: 100% 350px;
           background-repeat: no-repeat;
           background-position: 0% 3px;
-
-          
-  font-family: sans-serif;
-  background-color: #ffffff;
+          font-family: sans-serif;
+          background-color: #ffffff;
 }
 .file-upload {
     padding: 10% 3%;
@@ -203,13 +202,17 @@
   margin-top: 50px;
 }
 
+.right-items{
+  color: rgb(255, 255, 255);
+  margin-top: 10px;
+  text-align: right;
+}
     </style>
- 
-    <body>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Fish</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
@@ -231,6 +234,13 @@
             </div>
           </nav>
 
+          <form class="right-items">
+            로그인 <input type="text" value="" title="여기에 id 기입" size="10" placeholder="아이디 기입" name="id">
+            <input type="password" size="10" title="pw입력" placeholder="비밀번호 기입"name="pwd">
+            검색 <input type="text" name="search">
+            <input type="submit">
+          </form>
+
           <section class="container d-flex flex-column justify-content-center align-items-center">
             <h2 class="select-language">Language</h2>
             <select onchange="changeLanguage(this)" class="custom-select col-8">
@@ -242,7 +252,7 @@
         </section>
       
           <section class="section">
-              <h1 class="title">애완물고기에 대해 알아보기</h1>
+              <h1 class="title">초보자 추천 애완물고기에 대해 알아보기</h1>
               <h3 class="subtitle">내가 본 물고기는 어떤 종일까?</h3>
               
           </section>
@@ -299,6 +309,7 @@
     (d.head || d.body).appendChild(s);
     })();
 </script>
+
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -307,6 +318,9 @@
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+        
+        <body>
+
         <script>
             function readURL(input) {
                 if (input.files && input.files[0]) {
@@ -367,32 +381,47 @@
                 const prediction = await model.predict(image, false);
                 prediction.sort((a,b) => parseFloat(b.probability) - parseFloat(a.probability));
                 console.log(prediction[0].className);
-                var resultMassege;
-                switch(prediction[0].className) {
+                  var resultMassege, text_1, text_2, text_3;
+                  switch(prediction[0].className) {
                     case "구피":
-                        resultMassege = "해당 물고기는 '구피'입니다"
+                      resultMassege = "해당 물고기는 '구피'입니다."
+                      text_1 = "길이 3~4cm의 난태생송사리과의 기수성 열대어입니다."
+                      text_2 = "구피 적정 수온은 22~28도 사이로 가장 인기 있는 애완물고기입니다."
                         break;
                     case "베타":
                         resultMassege = "해당 물고기는 '베타'입니다"
+                        text_1 = "베타는 캄보디아, 라오스, 미얀마 등의 동남아시아에서 사는 민물고기입니다."
+                        text_2 = "베타 적정 수온은 25~27도 사이로 생명력이 강한 애완물고기입니다."
                         break;
                     case "코리도라스":
                         resultMassege = "해당 물고기는 '코리도라스'입니다"
+                        text_1 = "아마존 강 및 남미를 대표하는 열대어 중 하나로 6.5cm ~ 7cm 길이의 물고기입니다."
+                        text_2 = "코리도라스 적정 수온은 22~ 24도 사이로 온순한 애완물고기입니다."
                         break;
                     case "금붕어":
                         resultMassege = "해당 물고기는 '금붕어'입니다"
+                        text_1 = "잉어목 잉어과의 민물고기 중 붕어의 품종입니다."
+                        text_2 = "금붕어 적정 수온은 20~25도 사이로 사육난이도가 높아 중급자 이상에게 추천합니다."
                         break;
                     case "엔젤피쉬":
                         resultMassege = "해당 물고기는 '엔젤피쉬'입니다"
+                        text_1 = "농어목 시클리드과의 프테로필룸속에 속하는 어류, 아마존 강에 주로 분포합니다"
+                        text_2 = "엔젤피쉬 적정 수온은 24~27도 사이로 높은 수질 적응력이 특징입니다."
                         break;
                     case "안시":
                         resultMassege = "해당 물고기는 '안시'입니다"
+                        text_1 = "메기목 로리카리아과에 속한 담수성 대형 열대어입니다"
+                        text_2 = "안시 적정 수온은 26~28도 사이로 이끼를 먹고 사는 청소물고기입니다."
                         break;
                     case "비단잉어":
                         resultMassege = "해당 물고기는 '비단잉어'입니다"
+                        text_1 = "잉어목 잉어과의 어류입니다"
+                        text_2 = "비단잉어 적정 수온은 22~24도 사이로 생명력도 끈질기고 튼튼합니다."
                         break;
                     default:
                         resultMassege = "알수 없습니다"
-                }$('.result-message').html(resultMassege);
+                }$('.result-message').html(resultMassege + "<br>" + text_1 + "<br>" + text_2);
+                
 
                 for (let i = 0; i < maxPredictions; i++) {
                     const classPrediction =
@@ -401,6 +430,5 @@
                 }
             }
         </script>
-        
     </body>
 </html>
